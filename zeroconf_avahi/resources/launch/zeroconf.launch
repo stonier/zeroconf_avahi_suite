@@ -1,0 +1,6 @@
+<!--
+    Standalone zeroconf node with no services/listeners.
+ -->
+<launch>
+  <node pkg="zeroconf_avahi" type="zeroconf" name="zeroconf"  output="screen"/>
+</launch>

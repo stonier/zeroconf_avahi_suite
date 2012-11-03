@@ -1,0 +1,12 @@
+<stack>
+  <description brief="Avahi implementation of zeroconf for ros">
+  Convenient wrappers around the avahi client/daemon process typically
+  running on most *nix systems for zeroconf.
+  </description>
+  <author>Maintained by Daniel Stonier</author>
+  <license>BSD</license>  
+  <review status="experimental" notes=""/>
+  <url>http://ros.org/wiki/zeroconf_avahi_suite</url>
+  <depend stack="ros" /> <!-- roslib -->
+  <depend stack="ros_comm" /> <!-- std_msgs, rospy, roscpp -->
+</stack>
