@@ -16,6 +16,7 @@
 
 #include <zeroconf_avahi/zeroconf.hpp>
 #include <zeroconf_comms/PublishedService.h>
+#include <ros/ros.h>
 
 /*****************************************************************************
 ** Main

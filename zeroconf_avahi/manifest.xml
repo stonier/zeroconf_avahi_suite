@@ -11,9 +11,7 @@
   <url>http://ros.org/wiki/zeroconf_avahi</url>
   
   <depend package="roscpp"/>
-  <depend package="rospy"/>
-  <depend package="roslib"/>
-  <depend package="std_msgs"/>
+  <depend package="rosconsole"/>
   <depend package="zeroconf_comms"/>
   
   <rosdep name="libavahi-core-dev"/>

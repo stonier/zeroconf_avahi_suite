@@ -20,6 +20,7 @@
 #include <avahi-common/thread-watch.h>
 #include <boost/thread/thread.hpp>  // sleep
 #include <zeroconf_comms/Protocols.h>
+#include <ros/ros.h>
 #include "../../include/zeroconf_avahi/zeroconf.hpp"
 
 /*****************************************************************************
