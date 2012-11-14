@@ -15,7 +15,7 @@
 *****************************************************************************/
 
 #include <zeroconf_avahi/zeroconf.hpp>
-#include <zeroconf_comms/PublishedService.h>
+#include <zeroconf_msgs/PublishedService.h>
 #include <ros/ros.h>
 
 /*****************************************************************************
@@ -25,7 +25,7 @@
 int main(int argc, char **argv) {
 
 	zeroconf_avahi::Zeroconf zeroconf;
-	zeroconf_comms::PublishedService service_dudette, service_dude, service_colliding_dude, service_not_advertised;
+	zeroconf_msgs::PublishedService service_dudette, service_dude, service_colliding_dude, service_not_advertised;
 	service_dudette.name = "Dudette";
 	service_dudette.type = "_ros-master._tcp";
 	service_dudette.port = 8888;

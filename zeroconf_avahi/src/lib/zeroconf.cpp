@@ -19,7 +19,7 @@
 #include <avahi-common/timeval.h>
 #include <avahi-common/thread-watch.h>
 #include <boost/thread/thread.hpp>  // sleep
-#include <zeroconf_comms/Protocols.h>
+#include <zeroconf_msgs/Protocols.h>
 #include <ros/ros.h>
 #include "../../include/zeroconf_avahi/zeroconf.hpp"
 
@@ -346,7 +346,7 @@ bool Zeroconf::remove_service(const PublishedService &service)
  * @param list : list of services that have been discovered (return value)
  */
 void Zeroconf::list_discovered_services(const std::string &service_type,
-                                        std::vector<zeroconf_comms::DiscoveredService> &list)
+                                        std::vector<zeroconf_msgs::DiscoveredService> &list)
 {
   list.clear();
   boost::mutex::scoped_lock lock(service_mutex);
@@ -377,7 +377,7 @@ void Zeroconf::list_discovered_services(const std::string &service_type,
   }
 }
 void Zeroconf::list_published_services(const std::string &service_type,
-                                       std::vector<zeroconf_comms::PublishedService> &list)
+                                       std::vector<zeroconf_msgs::PublishedService> &list)
 {
   list.clear();
   boost::mutex::scoped_lock lock(service_mutex);
@@ -410,15 +410,15 @@ int Zeroconf::ros_to_avahi_protocol(const int &protocol)
 {
   switch (protocol)
   {
-    case (zeroconf_comms::Protocols::UNSPECIFIED):
+    case (zeroconf_msgs::Protocols::UNSPECIFIED):
     {
       return AVAHI_PROTO_UNSPEC;
     }
-    case (zeroconf_comms::Protocols::IPV4):
+    case (zeroconf_msgs::Protocols::IPV4):
     {
       return AVAHI_PROTO_INET;
     }
-    case (zeroconf_comms::Protocols::IPV6):
+    case (zeroconf_msgs::Protocols::IPV6):
     {
       return AVAHI_PROTO_INET6;
     }
@@ -431,15 +431,15 @@ std::string Zeroconf::ros_to_txt_protocol(const int &protocol)
 {
   switch (protocol)
   {
-    case (zeroconf_comms::Protocols::UNSPECIFIED):
+    case (zeroconf_msgs::Protocols::UNSPECIFIED):
     {
       return "unspecified";
     }
-    case (zeroconf_comms::Protocols::IPV4):
+    case (zeroconf_msgs::Protocols::IPV4):
     {
       return "ipv4";
     }
-    case (zeroconf_comms::Protocols::IPV6):
+    case (zeroconf_msgs::Protocols::IPV6):
     {
       return "ipv6";
     }
@@ -454,18 +454,18 @@ int Zeroconf::avahi_to_ros_protocol(const int &protocol)
   {
     case (AVAHI_PROTO_UNSPEC):
     {
-      return zeroconf_comms::Protocols::UNSPECIFIED;
+      return zeroconf_msgs::Protocols::UNSPECIFIED;
     }
     case (AVAHI_PROTO_INET):
     {
-      return zeroconf_comms::Protocols::IPV4;
+      return zeroconf_msgs::Protocols::IPV4;
     }
     case (AVAHI_PROTO_INET6):
     {
-      return zeroconf_comms::Protocols::IPV6;
+      return zeroconf_msgs::Protocols::IPV6;
     }
     default:
-      return zeroconf_comms::Protocols::UNSPECIFIED;
+      return zeroconf_msgs::Protocols::UNSPECIFIED;
   }
 }
 
@@ -498,7 +498,7 @@ std::string Zeroconf::avahi_to_txt_protocol(const int &protocol)
  * @param service : minimally defined service by name, type, domain, interface, protocol
  * @return iterator : points to the found object or discovered_services.end() if none found.
  */
-Zeroconf::discovered_service_set::iterator Zeroconf::find_discovered_service(zeroconf_comms::DiscoveredService &service)
+Zeroconf::discovered_service_set::iterator Zeroconf::find_discovered_service(zeroconf_msgs::DiscoveredService &service)
 {
   discovered_service_set::iterator iter = discovered_services.begin();
   while (iter != discovered_services.end())
@@ -551,7 +551,7 @@ void Zeroconf::discovery_callback(AvahiServiceBrowser *browser, AvahiIfIndex int
 
     case AVAHI_BROWSER_NEW:
     {
-      zeroconf_comms::DiscoveredService service;
+      zeroconf_msgs::DiscoveredService service;
       service.name = name;
       service.type = type;
       service.domain = domain;
@@ -591,7 +591,7 @@ void Zeroconf::discovery_callback(AvahiServiceBrowser *browser, AvahiIfIndex int
 
     case AVAHI_BROWSER_REMOVE:
     {
-      zeroconf_comms::DiscoveredService service;
+      zeroconf_msgs::DiscoveredService service;
       service.name = name;
       service.type = type;
       service.domain = domain;
@@ -686,7 +686,7 @@ void Zeroconf::resolve_callback(AvahiServiceResolver *resolver, AvahiIfIndex int
   {
     case AVAHI_RESOLVER_FAILURE:
     {
-      zeroconf_comms::DiscoveredService service;
+      zeroconf_msgs::DiscoveredService service;
       service.name = name;
       service.type = type;
       service.domain = domain;
@@ -747,14 +747,14 @@ void Zeroconf::resolve_callback(AvahiServiceResolver *resolver, AvahiIfIndex int
       t = avahi_string_list_to_string(txt);
       avahi_address_snprint(a, sizeof(a), address);
 
-      zeroconf_comms::DiscoveredService service;
+      zeroconf_msgs::DiscoveredService service;
       service.name = name;
       service.type = type;
       service.domain = domain;
       bool error = false;
       switch (zeroconf->avahi_to_ros_protocol(protocol))
       {
-        case (zeroconf_comms::Protocols::IPV4):
+        case (zeroconf_msgs::Protocols::IPV4):
         {
           service.ipv4_addresses.push_back(a);
           // workaround for avahi bug 2) above
@@ -769,7 +769,7 @@ void Zeroconf::resolve_callback(AvahiServiceResolver *resolver, AvahiIfIndex int
           }
           break;
         }
-        case (zeroconf_comms::Protocols::IPV6):
+        case (zeroconf_msgs::Protocols::IPV6):
         {
           service.ipv6_addresses.push_back(a);
           break;

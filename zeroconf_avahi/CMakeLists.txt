@@ -12,13 +12,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 # Catkin
 ##############################################################################
 
-find_package(catkin REQUIRED COMPONENTS roscpp rosconsole zeroconf_comms)
+find_package(catkin REQUIRED COMPONENTS roscpp rosconsole zeroconf_msgs)
 find_package(Boost REQUIRED COMPONENTS thread)
 find_package(Avahi REQUIRED)
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ${PROJECT_NAME}
-  CATKIN_DEPENDS rosconsole roscpp zeroconf_comms 
+  CATKIN_DEPENDS rosconsole roscpp zeroconf_msgs 
   DEPENDS Boost
 )
 include_directories(SYSTEM include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDES} ${AVAHI_INCLUDE_DIR})

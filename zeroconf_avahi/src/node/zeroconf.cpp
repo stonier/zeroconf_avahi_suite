@@ -15,11 +15,11 @@
 #include <boost/function.hpp>
 
 #include <ros/ros.h>
-#include <zeroconf_comms/AddListener.h>
-#include <zeroconf_comms/RemoveListener.h>
-#include <zeroconf_comms/AddService.h>
-#include <zeroconf_comms/ListDiscoveredServices.h>
-#include <zeroconf_comms/ListPublishedServices.h>
+#include <zeroconf_msgs/AddListener.h>
+#include <zeroconf_msgs/RemoveListener.h>
+#include <zeroconf_msgs/AddService.h>
+#include <zeroconf_msgs/ListDiscoveredServices.h>
+#include <zeroconf_msgs/ListPublishedServices.h>
 
 #include "../../include/zeroconf_avahi/zeroconf.hpp"
 
@@ -28,7 +28,7 @@
  *****************************************************************************/
 
 using namespace zeroconf_avahi;
-using namespace zeroconf_comms;
+using namespace zeroconf_msgs;
 
 /*****************************************************************************
  ** Interface
@@ -44,7 +44,7 @@ class ZeroconfNode
 {
 
 private:
-  typedef boost::function<void(zeroconf_comms::DiscoveredService)> connection_signal_cb;
+  typedef boost::function<void(zeroconf_msgs::DiscoveredService)> connection_signal_cb;
 
 public:
   void init(ros::NodeHandle &nh)
@@ -111,7 +111,7 @@ public:
                 "Zeroconf: " << i << "th element of param variable 'services' has malformed type, should be of type struct");
             break;
           }
-          zeroconf_comms::PublishedService service;
+          zeroconf_msgs::PublishedService service;
           XmlRpc::XmlRpcValue value_name = value_service["name"];
           if (value_name.getType() != XmlRpc::XmlRpcValue::TypeString)
           {
