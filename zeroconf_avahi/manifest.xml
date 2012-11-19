@@ -14,7 +14,7 @@
   <depend package="rospy"/>
   <depend package="roslib"/>
   <depend package="std_msgs"/>
-  <depend package="zeroconf_comms"/>
+  <depend package="zeroconf_msgs"/>
   
   <rosdep name="libavahi-core-dev"/>
   <rosdep name="libavahi-client-dev"/>

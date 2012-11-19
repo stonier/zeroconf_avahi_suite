@@ -25,8 +25,8 @@
 #include <boost/function.hpp>
 #include <boost/shared_ptr.hpp>
 
-#include <zeroconf_comms/PublishedService.h>
-#include <zeroconf_comms/DiscoveredService.h>
+#include <zeroconf_msgs/PublishedService.h>
+#include <zeroconf_msgs/DiscoveredService.h>
 
 /*****************************************************************************
  ** Namespaces
@@ -49,7 +49,7 @@ namespace zeroconf_avahi
  */
 struct PublishedServiceCompare
 {
-  bool operator()(const zeroconf_comms::PublishedService &a, const zeroconf_comms::PublishedService &b) const
+  bool operator()(const zeroconf_msgs::PublishedService &a, const zeroconf_msgs::PublishedService &b) const
   {
     if (a.name != b.name)
     {
@@ -82,7 +82,7 @@ public:
       resolver(NULL)
   {
   }
-  DiscoveredAvahiService(zeroconf_comms::DiscoveredService &discovered_service, AvahiServiceResolver *new_resolver,
+  DiscoveredAvahiService(zeroconf_msgs::DiscoveredService &discovered_service, AvahiServiceResolver *new_resolver,
                          int protocol, int hardware_interface) :
       service(discovered_service), protocol(protocol), hardware_interface(hardware_interface), resolver(new_resolver)
   {
@@ -95,7 +95,7 @@ public:
       avahi_service_resolver_free(resolver);
     }
   }
-  zeroconf_comms::DiscoveredService service;
+  zeroconf_msgs::DiscoveredService service;
   int protocol;
   int hardware_interface;
   AvahiServiceResolver *resolver;
@@ -112,8 +112,8 @@ struct DiscoveredAvahiServiceCompare
   bool operator()(const boost::shared_ptr<DiscoveredAvahiService> avahi_service_a,
                   const boost::shared_ptr<DiscoveredAvahiService> avahi_service_b) const
   {
-    const zeroconf_comms::DiscoveredService &a = avahi_service_a->service;
-    const zeroconf_comms::DiscoveredService &b = avahi_service_b->service;
+    const zeroconf_msgs::DiscoveredService &a = avahi_service_a->service;
+    const zeroconf_msgs::DiscoveredService &b = avahi_service_b->service;
     if (a.name != b.name)
     {
       return a.name < b.name;
@@ -162,12 +162,12 @@ struct DiscoveredAvahiServiceCompare
 class Zeroconf
 {
 private:
-  typedef zeroconf_comms::PublishedService PublishedService;
+  typedef zeroconf_msgs::PublishedService PublishedService;
   typedef boost::bimaps::bimap<AvahiEntryGroup*, boost::bimaps::set_of<PublishedService, PublishedServiceCompare> > service_bimap;
   typedef boost::bimaps::bimap<AvahiServiceBrowser*, boost::bimaps::set_of<std::string> > discovery_bimap;
   typedef std::set<boost::shared_ptr<DiscoveredAvahiService>, DiscoveredAvahiServiceCompare> discovered_service_set;
   typedef std::pair<AvahiEntryGroup*, PublishedService> service_map_pair;
-  typedef boost::function<void(zeroconf_comms::DiscoveredService)> connection_signal_cb;
+  typedef boost::function<void(zeroconf_msgs::DiscoveredService)> connection_signal_cb;
 
 public:
   Zeroconf();
@@ -180,8 +180,8 @@ public:
   // bool remove_services() <-- remove *all* services
   bool add_listener(std::string &service_type);
   bool remove_listener(const std::string &service_type);
-  void list_discovered_services(const std::string &service_type, std::vector<zeroconf_comms::DiscoveredService> &list);
-  void list_published_services(const std::string &service_type, std::vector<zeroconf_comms::PublishedService> &list);
+  void list_discovered_services(const std::string &service_type, std::vector<zeroconf_msgs::DiscoveredService> &list);
+  void list_published_services(const std::string &service_type, std::vector<zeroconf_msgs::PublishedService> &list);
 
   void connect_signal_callbacks(connection_signal_cb new_connections, connection_signal_cb lost_connections)
   {
@@ -211,7 +211,7 @@ private:
   std::string ros_to_txt_protocol(const int &protocol);
   int avahi_to_ros_protocol(const int &protocol);
   std::string avahi_to_txt_protocol(const int &protocol);
-  discovered_service_set::iterator find_discovered_service(zeroconf_comms::DiscoveredService &service);
+  discovered_service_set::iterator find_discovered_service(zeroconf_msgs::DiscoveredService &service);
 
   /*********************
    ** Mechanics
