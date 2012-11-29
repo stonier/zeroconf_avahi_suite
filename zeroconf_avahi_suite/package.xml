@@ -3,9 +3,7 @@
   <name>zeroconf_avahi_suite</name>
   <version>0.2.1</version>
   <description>
-    Avahi implementation of zeroconf for ros.
-    This originated in the zeroconf_implementations stack which was split up to avoid tangling c++ avahi 
-    and java dependencies.
+    Suite of packages supporing the avahi implementation of zeroconf for ros.
   </description>
   <maintainer email="d.stonier@gmail.com">Daniel Stonier</maintainer>
   <license>BSD</license>
@@ -14,6 +12,7 @@
   <url type="bugtracker">https://github.com/stonier/zeroconf_avahi_suite/issues</url>
   <author email="d.stonier@gmail.com">Daniel Stonier</author>
 
+  <run_depend>zeroconf_msgs</run_depend>
   <run_depend>zeroconf_avahi</run_depend>
   <run_depend>zeroconf_avahi_demos</run_depend>
   
