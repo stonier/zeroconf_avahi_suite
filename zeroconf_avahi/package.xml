@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>zeroconf_avahi</name>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
   <description>Provides zeroconf services on avahi for ros systems.
      This is a c++ implementation.</description>
   <maintainer email="d.stonier@gmail.com">Daniel Stonier</maintainer>
