@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>zeroconf_avahi_suite</name>
-  <version>0.2.1</version>
+  <version>0.2.2</version>
   <description>
     Suite of packages supporing the avahi implementation of zeroconf for ros.
   </description>
