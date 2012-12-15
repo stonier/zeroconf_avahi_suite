@@ -11,7 +11,7 @@
   <url type="bugtracker">https://github.com/stonier/zeroconf_avahi_suite/issues</url>
   <author email="d.stonier@gmail.com">Daniel Stonier</author> -->
 
-  <build_depend>catkin</build_depend>
+  <buildtool_depend>catkin</buildtool_depend>
   <build_depend>rosconsole</build_depend>
   <build_depend>roscpp</build_depend>
   <build_depend>zeroconf_msgs</build_depend>
