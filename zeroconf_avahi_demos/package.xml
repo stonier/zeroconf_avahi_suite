@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>zeroconf_avahi_demos</name>
-  <version>0.2.2</version>
+  <version>0.2.3</version>
   <description>
      Several demos and launch-tests for the avahi based zero-configuration.
   </description>
