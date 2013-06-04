@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>zeroconf_avahi_suite</name>
-  <version>0.2.2</version>
+  <version>0.2.3</version>
   <description>
     Suite of packages supporing the avahi implementation of zeroconf for ros.
   </description>
@@ -11,8 +11,8 @@
   <url type="repository">https://github.com/stonier/zeroconf_avahi_suite</url>
   <url type="bugtracker">https://github.com/stonier/zeroconf_avahi_suite/issues</url>
   <author email="d.stonier@gmail.com">Daniel Stonier</author>
-
-  <run_depend>zeroconf_msgs</run_depend>
+  
+  <buildtool_depend>catkin</buildtool_depend>
   <run_depend>zeroconf_avahi</run_depend>
   <run_depend>zeroconf_avahi_demos</run_depend>
   
