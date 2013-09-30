@@ -180,6 +180,7 @@ public:
   // bool remove_services() <-- remove *all* services
   bool add_listener(std::string &service_type);
   bool remove_listener(const std::string &service_type);
+  bool is_alive() const { return !invalid_object; }
   void list_discovered_services(const std::string &service_type, std::vector<zeroconf_msgs::DiscoveredService> &list);
   void list_published_services(const std::string &service_type, std::vector<zeroconf_msgs::PublishedService> &list);
 

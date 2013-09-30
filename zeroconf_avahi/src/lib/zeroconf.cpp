@@ -69,6 +69,7 @@ Zeroconf::~Zeroconf()
   /*********************
    ** Listeners
    **********************/
+  // note - this map will be empty if invalid_object is true
   {
     boost::mutex::scoped_lock lock(service_mutex);
     for (discovery_bimap::left_const_iterator iter = discovery_service_types.left.begin();
@@ -83,6 +84,7 @@ Zeroconf::~Zeroconf()
   {
     avahi_threaded_poll_stop(threaded_poll);
   }
+
   /*********************
    ** Publishers
    **********************/
@@ -113,6 +115,11 @@ void Zeroconf::spin()
 
 bool Zeroconf::add_listener(std::string &service_type)
 {
+  if (invalid_object) {
+    ROS_WARN_STREAM("Zeroconf : not connected to the avahi client, aborting add_listener [" << service_type << "]");
+    return false;
+  }
+
   /* Check if we're already listening for it. */
   {
     boost::mutex::scoped_lock lock(service_mutex);

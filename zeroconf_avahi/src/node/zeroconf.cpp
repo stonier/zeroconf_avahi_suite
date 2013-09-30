@@ -47,8 +47,15 @@ private:
   typedef boost::function<void(zeroconf_msgs::DiscoveredService)> connection_signal_cb;
 
 public:
+  /*********************
+   ** Checks
+   **********************/
   void init(ros::NodeHandle &nh)
   {
+    if (!zeroconf.is_alive()) {
+      ROS_WARN_STREAM("Zeroconf: aborting node initialisation, avahi client is not alive.");
+      return;
+    }
     /*********************
      ** Ros Comms
      **********************/
