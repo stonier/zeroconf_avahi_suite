@@ -10,6 +10,7 @@ target_link_libraries(official-browse-example ${AVAHI_LIBRARIES})
 
 add_executable(demo_zeroconf_api demo_zeroconf_api.cpp)
 target_link_libraries(demo_zeroconf_api ${catkin_LIBRARIES})
+add_dependencies(demo_zeroconf_api zeroconf_msgs_gencpp)
 
 # Need to rewrite the library without ros msg/srv's to do this
 #add_definitions(-DZEROCONF_DEBUG)
