@@ -11,7 +11,7 @@ set(CMAKE_VERBOSE_MAKEFILE TRUE)
 # Catkin
 ##############################################################################
 
-find_package(catkin REQUIRED COMPONENTS zeroconf_avahi)
+find_package(catkin REQUIRED COMPONENTS zeroconf_avahi zeroconf_msgs)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${zeroconf_avahi_DIR})
 find_package(Avahi REQUIRED)
 catkin_package()
