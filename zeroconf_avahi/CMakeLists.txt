@@ -21,7 +21,7 @@ catkin_package(
   CATKIN_DEPENDS rosconsole roscpp zeroconf_msgs 
   DEPENDS Boost
 )
-include_directories(SYSTEM include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDES} ${AVAHI_INCLUDE_DIR})
+include_directories(include ${catkin_INCLUDE_DIRS} ${Boost_INCLUDES} ${AVAHI_INCLUDE_DIR})
 
 ##############################################################################
 # Project

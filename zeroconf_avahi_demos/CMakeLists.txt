@@ -15,7 +15,7 @@ find_package(catkin REQUIRED COMPONENTS zeroconf_avahi zeroconf_msgs)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${zeroconf_avahi_DIR})
 find_package(Avahi REQUIRED)
 catkin_package()
-include_directories(SYSTEM include ${catkin_INCLUDE_DIRS} ${AVAHI_INCLUDE_DIR})
+include_directories(include ${catkin_INCLUDE_DIRS} ${AVAHI_INCLUDE_DIR})
 
 ##############################################################################
 # Project
